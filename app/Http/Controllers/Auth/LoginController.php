@@ -12,7 +12,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-
 class LoginController extends Controller
 {
     /*
@@ -57,8 +56,7 @@ class LoginController extends Controller
         if (!$isLogined) {
             $error = "Email or password you entered is incorrect";
             return redirect()->back()->withErrors($error);
-        }
-        else {
+        } else {
             return redirect('/');
         }
     }
