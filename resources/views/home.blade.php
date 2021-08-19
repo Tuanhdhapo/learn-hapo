@@ -27,9 +27,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <div class="fix-fixed">&nbsp;</div>
 
         <div class="banner-hapo">
@@ -48,7 +45,6 @@
                 </div>
             </div>
         </div>
-
         <div class="bg-banner"></div>
 
         <div class="tutorial-hapo">
@@ -384,4 +380,5 @@
                 </div>
             </div>
         </div>
+        
 @endsection

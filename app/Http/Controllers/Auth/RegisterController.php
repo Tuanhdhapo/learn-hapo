@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RequestRegister;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +43,28 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function register(RegisterRequest $request)
+    {
+        $user = $this -> create($request->all());
+
+        Auth::login($user);
+
+        return redirect()->back()->with('success', 'Register successfully.');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email_user'],
+            'password' => Hash::make($data['password_register'])
+        ]);
+    }
 }
