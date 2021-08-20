@@ -60,6 +60,7 @@
                                         href="#" onclick="hidenav()">LESSON
                                         DETAIL</a>
                                 </li>
+                                @if (!Auth::check())
                                 <li class="nav-item item-menu">
                                     <a class="nav-link text-center"
                                         role="tab"
@@ -69,6 +70,7 @@
                                         data-toggle="pill" href="#">LOGIN/REGISTER
                                     </a>
                                 </li>
+                                @endif
                                 <li class="nav-item item-menu">
                                     <a class="nav-link text-center"
                                         role="tab"
@@ -76,6 +78,15 @@
                                         data-toggle="pill"
                                         href="#" onclick="hidenav()">PROFILE</a>
                                 </li>
+                                @if (Auth::check())
+                                <li class="nav-item item-menu">
+                                    <a class="nav-link text-center"
+                                        role="tab"
+                                        aria-selected="false"
+                                        onclick="hidenav()"
+                                        href="/logout">LOGOUT</a>
+                                </li>
+                                @endif
                             </ul>
                         </div>
                     </nav>
@@ -108,15 +119,22 @@
                                 </ul>
                                 <div class="container tabs-container">
                                     <div id="tabs-login"><br>
+                                    <form class="login" method="POST" action="{{route('login')}}">
+                                    @csrf
                                         <div class="input">
                                             <label>Username:</label><br>
-                                            <input type="email" name="username"
-                                               > <br>
+                                            <input type="email" name="email" class="@error('email') is-invalid @enderror"> <br>
                                         </div>
+                                        @error('email')
+                                            <div class=" alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="input">
                                             <label>Password:</label><br>
-                                            <input type="password"  name="password"><br>
+                                            <input type="password"  name="password" class="@error('password') is-invalid @enderror"><br>
                                         </div>
+                                        @error('password')
+                                            <div class=" alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <div class="login-check">
                                             <input type="checkbox"
                                                 class="form-check-input
@@ -136,6 +154,7 @@
                                                     btn-primary login-hapo">LOGIN</button>
                                             </p>
                                         </div>
+                                        </form>   
                                         <div class="line-login">
                                             <span class="login-with">Login
                                                 with</span>
@@ -160,28 +179,41 @@
                                                     src="{{asset('images/facebook.png')}}"
                                                     alt="button-facebook">
                                                 Facebook</button>
-                                        </p>
-                                  
+                                        </p>    
                                 </div>
                                     <div id="tabs-register">
                                         <br><br>
+                                        <form class="login" method="POST" action="{{route('register')}}">
+                                        @csrf 
                                             <div class="input user-input"> <label>Username:</label><br>
-                                                <input type="text" name="name"
+                                                <input type="text" name="name"class="@error('name') is-invalid @enderror"
                                                 ><br>
                                             </div>
+                                            @error('name')
+                                            <div class=" alert-danger">{{ $message }}</div>
+                                            @enderror
                                             <div class="input"> <label>Email:</label><br>
-                                                <input type="email" name="email"
+                                                <input type="email" name="email_user"  class="@error('email_user') is-invalid @enderror"
                                                 ><br>
                                             </div>  
+                                            @error('email_user')
+                                            <div class=" alert-danger">{{ $message }}</div>
+                                            @enderror   
                                             <div class="input"> <label>Password:</label><br>
-                                                <input type="password" name="password"
+                                                <input type="password" name="password_register" class="@error('password_register') is-invalid @enderror"
                                                ><br>
                                             </div>
+                                            @error('password_register')
+                                            <div class=" alert-danger">{{ $message }}</div>
+                                            @enderror
                                             <div class="input"> <label>Repeat
                                                     Password:</label><br>
-                                                <input type="password" name="password_confirmation"
+                                                <input type="password" name="password_confirmation"  class="@error('password_confirmation') is-invalid @enderror"
                                                 ><br>
                                             </div>
+                                            @error('password_confirmation')
+                                            <div class=" alert-danger">{{ $message }}</div>
+                                            @enderror    
                                             <p class="text-center">
                                                 <button
                                                     type="submit" class="btn

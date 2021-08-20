@@ -37,6 +37,7 @@
             </div>
         </div>
 
-        <div class="footer-end"> <p>© 2020 HapoLearn, Inc. All rights
-                reserved.</p>
+        <div class="footer-end">
+             <p>© 2020 HapoLearn, Inc. All rights reserved.</p>
         </div>
+</div>
