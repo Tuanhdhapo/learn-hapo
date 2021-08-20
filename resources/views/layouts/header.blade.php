@@ -79,7 +79,6 @@
                                         href="#" onclick="hidenav()">PROFILE</a>
                                 </li>
                                 @if (Auth::check())
-                                <form method="POST" action="{{ route('logout') }}">
                                 <li class="nav-item item-menu">
                                     <a class="nav-link text-center"
                                         role="tab"
@@ -87,7 +86,6 @@
                                         onclick="hidenav()"
                                         href="/logout">LOGOUT</a>
                                 </li>
-                                </form>
                                 @endif
                             </ul>
                         </div>
